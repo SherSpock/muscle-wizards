@@ -6,7 +6,8 @@ class PhilosophiesController < ApplicationController
   end
 
   def create
-    @philosophy = current_user.philosophies.new(philosophy_params)
+    @philosophy = Philosophy.new(philosophy_params)
+    @philosophy.user = current_user
     if @philosophy.save
       flash[:success] = "Philosophy successfully added"
       redirect_to user_path(current_user)
