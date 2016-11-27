@@ -4,7 +4,12 @@
       <ul class="no-bullet">
         <li><span class="hide-small">Athlete: </span><%= prep.athlete.name %></li>
         <li><%= time_out(prep).html_safe %></li>
-        <li class="hide-small">Last updated: <%= prep.updated_at.strftime('%D') %></li>
+        <li class="hide-small">
+          Last updated: <%= prep.updated_at.strftime('%D') %>
+          <% if prep.conversation && prep.conversation.unread_message_count(current_user) > 0 %>
+            - <span class="green">New Messages!</span>
+          <% end %>
+        </li>
       </ul>
     </div>
     <div class="small-3 columns text-right">
