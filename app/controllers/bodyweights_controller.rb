@@ -6,16 +6,7 @@ class BodyweightsController < ApplicationController
 
 
   def index
-    @weights = @prep.bodyweights.order(created_at: :asc)
-    @chart_weights = @weights.reverse
-    if @weights.length > 10
-      @over_ten = true
-      @chart_weights = @weights[-10..-1].reverse
-    end
-    if params[:m]
-      @over_ten = false
-      @chart_weights = @weights.reverse
-    end
+    @weights = @prep.bodyweights.order(created_at: :desc)
   end
 
   def new
