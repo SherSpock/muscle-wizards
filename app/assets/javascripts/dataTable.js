@@ -8,11 +8,15 @@ var DataTable = {
   },
 
   showRecentDataRows: function() {
-    this.getHiddenRows().each(function(i, hiddenRow) {
+    this.getHiddenRows().each(function(i, row) {
       if (i < 14) {
-        $(hiddenRow).removeClass('hide');
+        $(row).removeClass('hide');
       }
-    });
+      if (i === 13) {
+        debugger;
+        this.styleLastVisibleRow(row);
+      }
+    }.bind(this));
   },
 
   getHiddenRows: function() {
@@ -55,10 +59,18 @@ var DataTable = {
       });
     } else {
       $('tr').each(function(i, row) {
-        if (i >= 14) {
-          $(row).addClass('hide');
-        }
-      });
+        if (i >= 14) $(row).addClass('hide');
+        if (i === 13) this.styleLastVisibleRow(row);
+      }.bind(this));
     }
+  },
+
+  styleLastVisibleRow: function(row) {
+    var dataCells = $(row).find('td');
+    dataCells.each(function(i, dataCell) {
+      $(dataCell).css('border-bottom', 'none');
+      if (i === 0) $(dataCell).css('border-bottom-left-radius', '2px');
+      if (i === dataCells.length - 1) $(dataCell).css('border-bottom-right-radius', '2px');
+    });
   }
 };
