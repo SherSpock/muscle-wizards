@@ -1,19 +1,20 @@
 var DataTable = {
   selector: null,
+  rowsToShow: null,
 
-  init: function(selector) {
+  init: function(selector, rowsToShow) {
     this.selector = selector;
+    this.rowsToShow = rowsToShow || 14;
     this.showRecentDataRows();
     this.enableListToggleLink();
   },
 
   showRecentDataRows: function() {
     this.getHiddenRows().each(function(i, row) {
-      if (i < 14) {
+      if (i < this.rowsToShow) {
         $(row).removeClass('hide');
       }
-      if (i === 13) {
-        debugger;
+      if (i === this.rowsToShow - 1) {
         this.styleLastVisibleRow(row);
       }
     }.bind(this));
@@ -45,7 +46,7 @@ var DataTable = {
 
   toggleButtonText: function(button) {
     if (this.getHiddenRows().length) {
-      $(button).text('Last 14 entries - click to see all data');
+      $(button).text('Last ' + this.rowsToShow + ' entries - click to see all data');
     } else {
       $(button).text('Showing all entries - click to see less');
     }
@@ -59,8 +60,8 @@ var DataTable = {
       });
     } else {
       $('tr').each(function(i, row) {
-        if (i >= 14) $(row).addClass('hide');
-        if (i === 13) this.styleLastVisibleRow(row);
+        if (i >= this.rowsToShow) $(row).addClass('hide');
+        if (i === this.rowsToShow - 1) this.styleLastVisibleRow(row);
       }.bind(this));
     }
   },
