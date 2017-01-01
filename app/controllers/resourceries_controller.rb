@@ -24,7 +24,7 @@ class ResourceriesController < ApplicationController
         Resourcery.create(resource_id: params[:resourcery][:resource_id], prep_id: id) unless id.blank?
       end
       flash[:success] = "Resource shared"
-      redirect_to user_path(current_user)
+      redirect_to current_user
     else
       Resourcery.create(resource_id: params[:resource_id], prep_id: params[:prep_id])
       redirect_back(fallback_location: root_path)
