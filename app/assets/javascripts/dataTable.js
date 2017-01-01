@@ -1,67 +1,64 @@
 var DataTable = {
-  selector: null,
-  rowsToShow: null,
 
   init: function(selector, rowsToShow) {
-    this.selector = selector;
-    this.rowsToShow = rowsToShow || 14;
-    this.showRecentDataRows();
-    this.enableListToggleLink();
+    var rowsToShow = rowsToShow || 14;
+    this.showRecentDataRows(selector, rowsToShow);
+    this.enableListToggleLink(selector, rowsToShow);
   },
 
-  showRecentDataRows: function() {
-    this.getHiddenRows().each(function(i, row) {
-      if (i < this.rowsToShow) {
+  showRecentDataRows: function(selector, rowsToShow) {
+    this.getHiddenRows(selector).each(function(i, row) {
+      if (i < rowsToShow) {
         $(row).removeClass('hide');
       }
-      if (i === this.rowsToShow - 1) {
+      if (i === rowsToShow - 1) {
         this.styleLastVisibleRow(row);
       }
     }.bind(this));
   },
 
-  getHiddenRows: function() {
-    var selectorString = this.selector + ' tr.hide';
+  getHiddenRows: function(selector) {
+    var selectorString = selector + ' tr.hide';
     return $(selectorString);
   },
 
-  enableListToggleLink: function() {
-    if (this.getHiddenRows().length > 14) {
-      this.showListToggleLink();
-      this.addListToggleEventHandler();
+  enableListToggleLink: function(selector, rowsToShow) {
+    if (this.getHiddenRows(selector).length > rowsToShow) {
+      this.showListToggleLink(selector);
+      this.addListToggleEventHandler(selector, rowsToShow);
     }
   },
 
-  showListToggleLink: function() {
-    $(this.selector + ' .list-toggle').removeClass('hide');
+  showListToggleLink: function(selector) {
+    $(selector + ' .list-toggle').removeClass('hide');
   },
 
-  addListToggleEventHandler: function() {
-    $(this.selector + ' .list-toggle').on('click', function(event) {
+  addListToggleEventHandler: function(selector, rowsToShow) {
+    $(selector + ' .list-toggle').on('click', function(event) {
       event.preventDefault();
-      this.toggleRows();
-      this.toggleButtonText(event.target);
+      this.toggleRows(selector, rowsToShow);
+      this.toggleButtonText(event.target, selector, rowsToShow);
     }.bind(this));
   },
 
-  toggleButtonText: function(button) {
-    if (this.getHiddenRows().length) {
-      $(button).text('Last ' + this.rowsToShow + ' entries - click to see all data');
+  toggleButtonText: function(button, selector, rowsToShow) {
+    if (this.getHiddenRows(selector).length) {
+      $(button).text('Last ' + rowsToShow + ' entries - click to see all data');
     } else {
       $(button).text('Showing all entries - click to see less');
     }
   },
 
-  toggleRows: function() {
-    var rows = this.getHiddenRows();
+  toggleRows: function(selector, rowsToShow) {
+    var rows = this.getHiddenRows(selector);
     if (rows.length) {
       rows.each(function(i, row) {
         $(row).removeClass('hide');
       });
     } else {
-      $('tr').each(function(i, row) {
-        if (i >= this.rowsToShow) $(row).addClass('hide');
-        if (i === this.rowsToShow - 1) this.styleLastVisibleRow(row);
+      $(selector + ' tr').each(function(i, row) {
+        if (i >= rowsToShow) $(row).addClass('hide');
+        if (i === rowsToShow - 1) this.styleLastVisibleRow(row);
       }.bind(this));
     }
   },
