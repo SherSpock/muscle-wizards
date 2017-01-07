@@ -1,8 +1,10 @@
 class PrepsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_prep,       only: [:show, :self_coach]
+  before_action :user_owns_prep, only: [:show, :self_coach]
 
   def new
-    @prep = Prep.new
+    @prep    = Prep.new
     @contest = @prep.contests.new
   end
 
@@ -17,16 +19,12 @@ class PrepsController < ApplicationController
   end
 
   def show
-    @prep = Prep.find(params[:id])
-    if user_owns_prep
-      @coach = @prep.coach
-      @photos = @prep.photos.order(created_at: :desc).limit(3)
-    end
+    @coach  = @prep.coach
+    @photos = @prep.photos.order(created_at: :desc).limit(3)
   end
 
   def self_coach
-    @prep = Prep.find(params[:prep_id])
-    @prep.coach_id = @prep.user_id if user_owns_prep
+    @prep.coach_id = @prep.user_id
     @prep.save
     redirect_to @prep
   end
