@@ -1,7 +1,7 @@
 class ResourceriesController < ApplicationController
   before_action :authenticate_user!
   before_action :user_owns_resource, only: [:create, :destroy]
-  before_action :set_prep, only: [:index, :show]
+  before_action :set_prep, only:           [:index, :show]
 
   def index
     @resourceries = @prep.resourceries.order(created_at: :desc)
