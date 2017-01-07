@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user
+  before_action :authenticate_user!
 
   def index
     @coaches = User.where(coach: true)

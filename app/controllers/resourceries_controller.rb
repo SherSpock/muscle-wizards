@@ -1,5 +1,5 @@
 class ResourceriesController < ApplicationController
-  before_action :require_user
+  before_action :authenticate_user!
   before_action :user_owns_resource, only: [:create, :destroy]
   before_action :set_prep, only: [:index, :show]
 

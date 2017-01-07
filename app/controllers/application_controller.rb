@@ -9,10 +9,6 @@ class ApplicationController < ActionController::Base
     @prep = Prep.find(params[:prep_id])
   end
 
-  def require_user
-    redirect_to home_path unless current_user
-  end
-
   def require_coach
     redirect_to current_user unless current_user.coach
   end
@@ -41,5 +37,12 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :gender, :age, :height, :phone_number, :avatar, :coach])
+  end
+
+  private
+  # override the devise method for where to go after signing out because theirs
+  # always goes to the root path.
+  def after_sign_out_path_for(resource)
+    home_path
   end
 end
