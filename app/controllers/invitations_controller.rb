@@ -2,15 +2,14 @@ class InvitationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_prep
   before_action :user_owns_prep, only: [:new, :create]
+  before_action :set_coach, except: [:destroy]
 
   def new
     @invitation = Invitation.new
-    @coach = User.find(params[:id])
   end
 
   def create
-    @invitation = Invitation.new(invitation_params)
-    @coach = User.find(params[:id])
+    @invitation      = Invitation.new(invitation_params)
     @invitation.user = @coach
     @invitation.prep = @prep
     if @invitation.save
@@ -25,7 +24,6 @@ class InvitationsController < ApplicationController
   def show
     @invitation = @prep.invitation
     @user = @prep.athlete
-    @coach = User.find(params[:id])
   end
 
   def destroy
@@ -38,7 +36,6 @@ class InvitationsController < ApplicationController
 
   def accept_invite
     @invitation = @prep.invitation
-    @coach = User.find(params[:id])
     @prep.coach_id = @coach.id
     @prep.save
     InvitationMailer.accept(@prep.athlete, @prep).deliver_later
@@ -50,5 +47,9 @@ class InvitationsController < ApplicationController
 
   def invitation_params
     params.require(:invitation).permit(:message)
+  end
+
+  def set_coach
+    @coach = User.find(params[:id])
   end
 end

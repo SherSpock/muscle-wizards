@@ -5,16 +5,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :new_message_count
 
+  # Preps
   def set_prep
     @prep = Prep.find(params[:prep_id])
-  end
-
-  def require_coach
-    redirect_to current_user unless current_user.coach
-  end
-
-  def coach_or_coached_athlete?(user)
-    user.coach || prep_includes_user?(user)
   end
 
   def prep_includes_user?(user)
@@ -27,6 +20,16 @@ class ApplicationController < ActionController::Base
       redirect_back(fallback_location: root_path)
     end
     true
+  end
+
+  # Coaches
+  
+  def require_coach
+    redirect_to current_user unless current_user.coach
+  end
+
+  def coach_or_coached_athlete?(user)
+    user.coach || prep_includes_user?(user)
   end
 
   def new_message_count
