@@ -5,16 +5,16 @@ class ResourceriesController < ApplicationController
 
   def index
     @resourceries = @prep.resourceries.order(created_at: :desc)
-    @resources = @resourceries.map { |rsrcry| rsrcry.resource }
+    @resources    = @resourceries.map { |rsrcry| rsrcry.resource }
     if current_user == @prep.coach
       @unshared_resources = current_user.resources - @resources
     end
   end
 
   def new
-    @resource = Resource.find(params[:resource])
+    @resource   = Resource.find(params[:resource])
     @resourcery = Resourcery.new
-    @preps = Prep.where(coach_id: current_user.id)
+    @preps      = Prep.where(coach_id: current_user.id)
   end
 
   def create
@@ -54,7 +54,7 @@ class ResourceriesController < ApplicationController
       resource = resourcery.resource
     end
     if current_user != resource.user
-      flash[:alert] = "You don't have permission to do that"
+      flash[:alert]  = "You don't have permission to do that"
       redirect_back(fallback_location: root_path)
     end
   end
