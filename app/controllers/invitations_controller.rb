@@ -23,23 +23,22 @@ class InvitationsController < ApplicationController
 
   def show
     @invitation = @prep.invitation
-    @user = @prep.athlete
+    @user       = @prep.athlete
   end
 
   def destroy
     @invitation = Invitation.find_by(user_id: params[:id])
-    @coach = User.find(@invitation.user_id)
+    @coach      = User.find(@invitation.user_id)
     @invitation.destroy
     InvitationMailer.reject(@coach, @prep).deliver_later
     redirect_to @prep
   end
 
   def accept_invite
-    @invitation = @prep.invitation
+    @invitation    = @prep.invitation
     @prep.coach_id = @coach.id
     @prep.save
     InvitationMailer.accept(@prep.athlete, @prep).deliver_later
-    @invitation.destroy
     redirect_to @prep
   end
 

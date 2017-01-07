@@ -17,7 +17,7 @@ class CardiosController < ApplicationController
     def create
       @cardio = @prep.cardios.new(cardio_params)
       if @cardio.save
-        flash[:success] = "Cardio added!"
+        flash[:success] = "Cardio entered!"
         redirect_to @prep
       else
         render :new
