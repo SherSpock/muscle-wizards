@@ -36,7 +36,7 @@
           <th>Fat(g)</th>
         </tr>
           <% @target_macros.each do |tm| %>
-            <tr>
+            <tr class="hide">
               <td><%= tm.created_at.strftime('%D') %></td>
               <td><%= tm.protein %></td>
               <td><%= tm.carbs %></td>
@@ -56,7 +56,7 @@
           <th>Fat(g)</th>
         </tr>
           <% @macros.each do |m| %>
-            <tr>
+            <tr class="hide">
               <td><%= m.created_at.strftime('%D') %></td>
               <td><%= m.protein %></td>
               <td><%= m.carbs %></td>
@@ -69,8 +69,6 @@
 </div>
 
 <script>
-$(document).ready(function() {
   DataTable.init('#target-macros-table', 10);
   DataTable.init('#macros-table', 10);
-});
 </script>

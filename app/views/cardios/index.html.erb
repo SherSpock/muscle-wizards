@@ -22,7 +22,7 @@
 
 <div class="row">
   <div class="small-12 medium-8 medium-offset-2 columns text-center">
-    <div class="data-table text-center" id="target-cardio-table">
+    <div class="data-table text-center" id="target-cardios-table">
       <table>
         <h3>Target Cardio Log</h3>
           <%= link_to "Last 10 Entries - Click to See All Data", '#', class: 'list-toggle hide'%>
@@ -47,7 +47,7 @@
 
 <div class="row">
   <div class="small-12 medium-8 medium-offset-2 columns text-center">
-    <div class="data-table text-center" id="cardio-table">
+    <div class="data-table text-center" id="cardios-table">
       <table>
         <h3>Cardio Log</h3>
           <%= link_to "Last 10 Entries - Click to See All Data", '#', class: 'list-toggle hide'%>
@@ -69,3 +69,8 @@
     </div>
   </div>
 </div>
+
+<script>
+  DataTable.init('#target-cardios-table', 10);
+  DataTable.init('#cardios-table', 10);
+</script>
