@@ -35,4 +35,8 @@ class PrepsController < ApplicationController
     params.require(:prep).permit(:title, contests_attributes: [:title, :date, :url])
   end
 
+  def set_prep
+    @prep = Prep.find(params[:id])
+  end
+
 end
