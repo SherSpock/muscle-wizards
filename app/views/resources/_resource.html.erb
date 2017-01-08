@@ -1,0 +1,15 @@
+<div class="row resource">
+  <div class="small-6 columns">
+    <ul class="no-bullet">
+      <li><%= link_to resource.title, user_resource_path(current_user, resource) %></li>
+      <li>Created at: <%= resource.created_at.strftime("%D") %></li>
+      <li>
+        <%= link_to "Edit", edit_user_resource_path(current_user, resource), class: "underline" %>
+        <%= link_to "Delete", user_resource_path(current_user, resource), class: "underline", method: :delete %>
+      </li>
+    </ul>
+  </div>
+  <div class="small-6 columns text-right">
+    <%= link_to "Share Resource", new_resourcery_path(resource_id: resource.id), class: "button", id: "share-button" %>
+  </div>
+</div>
