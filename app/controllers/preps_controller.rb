@@ -36,7 +36,8 @@ class PrepsController < ApplicationController
   end
 
   def set_prep
-    @prep = Prep.find(params[:id])
+    prep_id = params[:prep_id] ? params[:prep_id] : params[:id]
+    @prep = Prep.find(prep_id)
   end
 
 end

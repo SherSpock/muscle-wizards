@@ -11,4 +11,5 @@
   <%= link_to "Edit Your Profile", edit_user_path(@user), class: "expanded button" if @user == current_user %>
   <%= link_to "Your Resources", user_resources_path(@user), class: "expanded button" if @user == current_user && @user.coach %>
   <%= link_to "Request Coach for Prep", new_coach_request_path(@prep, @user), class: "expanded button" if params[:prep_id] && !@prep.coach_id && @user.coach %>
+  <%= link_to "Back to Prep", @prep, class: "expanded button" if params[:prep_id] %>
 </div>

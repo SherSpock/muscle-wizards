@@ -14,7 +14,7 @@
     </ul>
   <% elsif @prep.coach_id != @prep.athlete.id %>
     <h4>Coach</h4>
-    <%= link_to user_path(@coach) do %>
+    <%= link_to coach_path(@prep, @coach) do %>
       <%= image_tag(@coach.avatar(:medium), class: "prep-avatar") %>
       <h6><%= @coach.name %></h6>
     <% end %>
