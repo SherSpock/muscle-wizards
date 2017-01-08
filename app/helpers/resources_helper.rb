@@ -12,7 +12,13 @@ module ResourcesHelper
     Resourcery.find_by(resource_id: resource.id, prep_id: @prep.id)
   end
 
-  def resource_shared?(resource)
-    find_resourcery(resource)
+  def resource_shared_with_prep?(resource)
+    resource.preps.include? @prep
   end
+
+  def new_resource_count
+    @new_resource_count = @prep.resourceries.where("read = ?", false).count
+    @new_resource_count > 0 ? "Resources (#{@new_resource_count})" : "Resources"
+  end
+
 end
