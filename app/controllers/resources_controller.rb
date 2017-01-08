@@ -8,10 +8,9 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
-    if params[:prep_id]
+    if in_prep_context?
       set_prep
-      @resourcery = @resource.resourceries.where(prep_id: @prep.id)
-      @resourcery.update(read: true) if current_user == @prep.athlete
+      mark_as_read(@resource, @prep)
     end
   end
 
@@ -54,6 +53,15 @@ class ResourcesController < ApplicationController
 
   def resource_params
     params.require(:resource).permit(:title, :body, :url, :upload)
+  end
+
+  def in_prep_context?
+    !!params[:prep_id]
+  end
+
+  def mark_as_read(resource, prep)
+    resourcery = resource.resourceries.where(prep_id: prep.id)
+    resourcery.update(read: true) if current_user == prep.athlete
   end
 
 end

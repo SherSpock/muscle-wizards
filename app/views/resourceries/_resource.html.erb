@@ -11,12 +11,14 @@
     </ul>
   </div>
   <div class="small-6 columns text-right">
-    <div class="share-link">
-      <% if resource_shared_with_prep?(resource) %>
-        <%= link_to "Unshare Resource", resourcery_path(find_resourcery(resource)), method: :delete %>
-      <% else %>
-        <%= link_to "+ Share Resource", resourceries_path(prep_id: @prep.id, resource_id: resource.id), method: :post %>
-      <% end %>
-    </div>
+    <% if current_user == resource.user %>
+      <div class="share-link">
+        <% if resource_shared_with_prep?(resource) %>
+          <%= link_to "Unshare Resource", resourcery_path(find_resourcery(resource)), method: :delete %>
+        <% else %>
+          <%= link_to "+ Share Resource", resourceries_path(prep_id: @prep.id, resource_id: resource.id), method: :post %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
