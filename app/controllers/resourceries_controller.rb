@@ -19,11 +19,11 @@ class ResourceriesController < ApplicationController
       Resourcery.create(resource_id: get_resource_id, prep_id: id) unless id.blank?
     end
 
-    if params[:resourcery]
+    if in_prep_context?
+      redirect_back(fallback_location: root_path)
+    else
       flash[:success] = "Resource shared"
       redirect_to current_user
-    else
-      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -41,11 +41,15 @@ class ResourceriesController < ApplicationController
   end
 
   def get_resource_id
-    params[:resource_id] || params[:resourcery] && params[:resourcery][:resource_id]
+    in_prep_context? ? params[:resource_id] : params[:resourcery][:resource_id]
   end
 
   def get_prep_ids
-    (params[:resourcery] && params[:resourcery][:prep_id]) || [params[:prep_id]]
+    in_prep_context? ? [params[:prep_id]] : params[:resourcery][:prep_id]
+  end
+
+  def in_prep_context?
+    !params[:resourcery]
   end
 
   def user_owns_resource
