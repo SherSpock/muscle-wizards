@@ -9,7 +9,7 @@
   </div>
   <div class="medium-8 columns">
     <% if @user == current_user %>
-      <%= render partial: 'preps', locals: { preps: @user.preps } %>
+      <%= render partial: 'preps', locals: { preps: @user.preps.current } %>
     <% end %>
     <% if @user.coach %>
       <%= render partial: "user_about" %>

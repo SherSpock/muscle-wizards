@@ -22,4 +22,11 @@ class Prep < ApplicationRecord
     Conversation.between(athlete, coach).first
   end
 
+  scope :current, -> do
+    where("archived != true")
+  end
+
+  scope :archived, -> do
+    where("archived = true")
+  end
 end
