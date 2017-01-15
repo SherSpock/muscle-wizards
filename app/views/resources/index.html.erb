@@ -2,13 +2,9 @@
   <div class="small-12 columns">
     <h2>Resources</h2>
     <%= render @resources %>
-    <%= link_to "+ Add a New Resource", new_user_resource_path(current_user) unless @prep %>
+    <%= link_to "+ Add a New Resource", new_user_resource_path(current_user) %>
     <div>
-      <% if @prep %>
-        <%= link_to "Back to Prep", @prep, class: "button", id: "back-user-butt" %>
-      <% else %>
-        <%= link_to "Back to User Profile", user_path(current_user), class: "button", id: "back-user-butt" %>
-      <% end %>
+      <%= link_to "Back to User Profile", current_user, class: "button", id: "back-butt" %>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="backgrnd">
   <h4>Athlete</h4>
-  <%= link_to user_path(@prep.athlete) do %>
+  <%= link_to athlete_path(@prep.athlete) do %>
     <%= image_tag(@prep.athlete.avatar(:medium), class: "prep-avatar") %>
     <h6><%= @prep.athlete.name %></h6>
   <% end %>

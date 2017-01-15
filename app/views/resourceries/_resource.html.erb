@@ -1,0 +1,24 @@
+<div class="row resource">
+  <div class="small-6 columns">
+    <ul class="no-bullet">
+      <% if resource_shared_with_prep?(resource) %>
+        <li><%= link_to (resource.title + unread_flag(resource)).html_safe, prep_resource_path(@prep, resource) %></li>
+        <li>Shared on: <%= resource_shared_date(resource) %></li>
+      <% else %>
+        <li><%= link_to resource.title, prep_resource_path(@prep, resource) %></li>
+        <li>Created at: <%= resource.created_at.strftime("%D") %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="small-6 columns text-right">
+    <% if current_user == resource.user %>
+      <div class="share-link">
+        <% if resource_shared_with_prep?(resource) %>
+          <%= link_to "Unshare Resource", resourcery_path(find_resourcery(resource)), method: :delete %>
+        <% else %>
+          <%= link_to "+ Share Resource", resourceries_path(prep_id: @prep.id, resource_id: resource.id), method: :post %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

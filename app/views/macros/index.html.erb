@@ -25,20 +25,18 @@
 
 <div class="row">
   <div class="small-12 columns">
-    <div class="data-table text-center">
-      <table id="target-macros-table">
+    <div class="data-table text-center" id="target-macros-table">
+      <table>
         <h3>Target Macro Log</h3>
-        <% if @over_ten2 %>
-          <%= link_to "Last 10 Entries - Click to See All Data", check_macro_params || "?tm=all" unless params[:tm]%>
-        <% end %>
+        <%= link_to "Last 10 Entries - Click to See All Data", '#', class: 'list-toggle hide'%>
         <tr>
           <th>Date</th>
           <th>Protein(g)</th>
           <th>Carbs(g)</th>
           <th>Fat(g)</th>
         </tr>
-          <% @chart_target_macros.each do |tm| %>
-            <tr>
+          <% @target_macros.each do |tm| %>
+            <tr class="hide">
               <td><%= tm.created_at.strftime('%D') %></td>
               <td><%= tm.protein %></td>
               <td><%= tm.carbs %></td>
@@ -47,20 +45,18 @@
           <% end %>
       </table>
     </div>
-    <div class="data-table text-center">
-      <table id="macros-table">
+    <div class="data-table text-center" id="macros-table">
+      <table>
         <h3>Macro Log</h3>
-        <% if @over_ten %>
-          <%= link_to "Last 10 Entries - Click to See All Data", check_macro_params || "?m=all" unless params[:m]%>
-        <% end %>
+          <%= link_to "Last 10 Entries - Click to See All Data", '#', class: 'list-toggle hide'%>
         <tr>
           <th>Date</th>
           <th>Protein(g)</th>
           <th>Carbs(g)</th>
           <th>Fat(g)</th>
         </tr>
-          <% @chart_macros.each do |m| %>
-            <tr>
+          <% @macros.each do |m| %>
+            <tr class="hide">
               <td><%= m.created_at.strftime('%D') %></td>
               <td><%= m.protein %></td>
               <td><%= m.carbs %></td>
@@ -71,3 +67,8 @@
     </div>
   </div>
 </div>
+
+<script>
+  DataTable.init('#target-macros-table', 10);
+  DataTable.init('#macros-table', 10);
+</script>

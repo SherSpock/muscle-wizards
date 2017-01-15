@@ -12,7 +12,7 @@
     <div class="top-bar-right" id="top-bar-right">
       <ul class="menu">
         <% if current_user %>
-          <li><%= link_to "Profile", user_path(current_user), id: "hide-small" %></li>
+          <li><%= link_to "Profile", current_user, id: "hide-small" %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Login", new_user_session_path %></li>

@@ -27,18 +27,16 @@
 
 <div class="row">
   <div class="small-12 medium-8 medium-offset-2 columns text-center">
-    <div class="data-table text-center">
-      <table id="target-cardio-table">
+    <div class="data-table text-center" id="bodyweights-table">
+      <table>
         <h3>Bodyweight Log</h3>
-        <% if @over_ten %>
-          <%= link_to "Last 10 Entries - Click to See All Data", check_macro_params || "?m=all" unless params[:m]%>
-        <% end %>
+          <%= link_to "Last 14 entries - click to see all data", '#', class: 'list-toggle hide'%>
         <tr>
           <th>Date</th>
           <th>Weight (lbs)</th>
         </tr>
-          <% @chart_weights.each do |bw| %>
-            <tr>
+          <% @weights.each do |bw| %>
+            <tr class="hide">
               <td><%= bw.created_at.strftime('%D') %></td>
               <td><%= bw.display_weight %></td>
             </tr>
@@ -47,3 +45,7 @@
     </div>
   </div>
 </div>
+
+<script>
+  DataTable.init('#bodyweights-table', 14);
+</script>

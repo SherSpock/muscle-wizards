@@ -1,5 +1,5 @@
 class PhilosophiesController < ApplicationController
-  before_action :require_user
+  before_action :authenticate_user!
 
   def new
     @philosophy = Philosophy.new
@@ -10,7 +10,7 @@ class PhilosophiesController < ApplicationController
     @philosophy.user = current_user
     if @philosophy.save
       flash[:success] = "Philosophy successfully added"
-      redirect_to user_path(current_user)
+      redirect_to current_user
     else
       render :new
     end
@@ -24,7 +24,7 @@ class PhilosophiesController < ApplicationController
     @philosophy = Philosophy.find(params[:id])
     if @philosophy.update_attributes(philosophy_params)
       flash[:success] = "Philosophy successfully updated"
-      redirect_to user_path(current_user)
+      redirect_to current_user
     else
       render :edit
     end

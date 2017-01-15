@@ -1,5 +1,6 @@
 class CertificationsController < ApplicationController
-  before_action :require_user
+  before_action :authenticate_user!
+  before_action :require_coach
 
   def new
     @certification = Certification.new
@@ -9,7 +10,7 @@ class CertificationsController < ApplicationController
     @certification = current_user.certifications.new(certification_params)
     if @certification.save
       flash[:success] = "New certification saved!"
-      redirect_to user_path(current_user)
+      redirect_to current_user
     else
       render :new
     end
@@ -23,7 +24,7 @@ class CertificationsController < ApplicationController
     @certification = Certification.find(params[:id])
     if @certification.user == current_user && @certification.update_attributes(certification_params)
       flash[:success] = "Certification successfully updated!"
-      redirect_to user_path(current_user)
+      redirect_to current_user
     else
       render :edit
     end
@@ -32,7 +33,8 @@ class CertificationsController < ApplicationController
   def destroy
     @certification = Certification.find(params[:id])
     @certification.destroy if @certification.user == current_user
-    redirect_to user_path(current_user)
+    flash[:success] = "Certification deleted"
+    redirect_to current_user
   end
 
   private

@@ -5,16 +5,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :new_message_count
 
+  # Preps
   def set_prep
     @prep = Prep.find(params[:prep_id])
-  end
-
-  def require_user
-    redirect_to home_path unless current_user
-  end
-
-  def coach_or_coached_athlete?(user)
-    user.coach || prep_includes_user?(user)
   end
 
   def prep_includes_user?(user)
@@ -29,6 +22,16 @@ class ApplicationController < ActionController::Base
     true
   end
 
+  # Coaches
+  
+  def require_coach
+    redirect_to current_user unless current_user.coach
+  end
+
+  def coach_or_coached_athlete?(user)
+    user.coach || prep_includes_user?(user)
+  end
+
   def new_message_count
     @prep.conversation.unread_message_count(current_user) if @prep.conversation
   end
@@ -37,5 +40,12 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :gender, :age, :height, :phone_number, :avatar, :coach])
+  end
+
+  private
+  # override the devise method for where to go after signing out because theirs
+  # always goes to the root path.
+  def after_sign_out_path_for(resource)
+    home_path
   end
 end

@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :require_user
+  before_action :authenticate_user!
   before_action :get_conversation
   before_action :set_prep
   before_action :user_owns_prep

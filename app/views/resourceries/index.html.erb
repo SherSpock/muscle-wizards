@@ -1,18 +1,13 @@
 <div class="row">
   <div class="small-12 columns">
     <h2>Resources:</h2>
-    <%= render @resources %>
-    <%= link_to "+ Add a New Resource", new_user_resource_path(current_user) unless @prep %>
+    <%= render partial: 'resource', collection: @resources %>
     <% if current_user == @prep.coach %>
       <h2>Unshared Resources:</h2>
-      <%= render @unshared_resources %>
+      <%= render partial: 'resource', collection: @unshared_resources %>
     <% end %>
     <div>
-      <% if @prep %>
-        <%= link_to "Back to Prep", @prep, class: "button", id: "back-user-butt" %>
-      <% else %>
-        <%= link_to "Back to User Profile", user_path(current_user), class: "button", id: "back-user-butt" %>
-      <% end %>
+      <%= link_to "Back to Prep", @prep, class: "button", id: "back-butt" %>
     </div>
   </div>
 </div>

@@ -1,29 +1,15 @@
 <div class="row resource">
   <div class="small-6 columns">
     <ul class="no-bullet">
-      <% if @prep %>
-        <% if resource_shared?(resource) %>
-          <li><%= link_to (resource.title + unread_flag(resource)).html_safe, prep_resource_path(@prep, resource) %></li>
-          <li>Shared on: <%= resource_shared_date(resource) %></li>
-        <% else %>
-          <li><%= link_to resource.title, prep_resource_path(@prep, resource) %></li>
-          <li>Created at: <%= resource.created_at.strftime("%D") %></li>
-        <% end %>
-      <% else %>
-        <li><%= link_to resource.title, user_resource_path(user_id: resource.user.id, id: resource.id) %></li>
-      <% end %>
-      <% if resource.user == current_user && !@prep %>
-        <li>Created at: <%= resource.created_at.strftime("%D") %></li>
-        <li>
-          <%= link_to "Edit", edit_user_resource_path(user_id: current_user.id, id: resource.id), class: "underline" %>
-          <%= link_to "Delete", user_resource_path(user_id: current_user.id, id: resource.id), class: "underline", method: :delete %>
-        </li>
-      <% end %>
+      <li><%= link_to resource.title, user_resource_path(current_user, resource) %></li>
+      <li>Created at: <%= resource.created_at.strftime("%D") %></li>
+      <li>
+        <%= link_to "Edit", edit_user_resource_path(current_user, resource), class: "underline" %>
+        <%= link_to "Delete", user_resource_path(current_user, resource), class: "underline", method: :delete %>
+      </li>
     </ul>
   </div>
   <div class="small-6 columns text-right">
-    <% if resource.user == current_user %>
-      <%= render partial: 'resources/sharing_options', locals: { resource: resource } %>
-    <% end %>
+    <%= link_to "Share Resource", new_resourcery_path(resource_id: resource.id), class: "button", id: "share-button" %>
   </div>
 </div>
