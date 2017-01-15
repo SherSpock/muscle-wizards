@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
+  before_action :require_user, only: [:show]
 
   def index
     @coaches = User.where(coach: true)
@@ -47,6 +48,10 @@ class UsersController < ApplicationController
 
   def get_coached_preps
     current_user.coached_preps.order(updated_at: :desc).select { |prep| prep.athlete != prep.coach }
+  end
+
+  def require_user
+    redirect_to home_path unless current_user
   end
 
 end
