@@ -11,6 +11,7 @@
     <% if @user == current_user %>
       <%= render partial: 'preps', locals: { preps: @user.preps.current } %>
     <% end %>
+    <%= link_to 'Archived preps', archived_preps_path if current_user.preps.archived.any? %>
     <% if @user.coach %>
       <%= render partial: "user_about" %>
     <% end %>

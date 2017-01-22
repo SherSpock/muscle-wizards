@@ -3,7 +3,7 @@
     <div class="small-9 columns">
       <ul class="no-bullet">
         <li><span class="hide-small">Athlete: </span><%= prep.athlete.name %></li>
-        <li><%= time_out(prep).html_safe %></li>
+        <li><%= prep.active? ? time_out(prep).html_safe : "Archived at: #{nearest_contest(prep).date.strftime('%D')}" %></li>
         <li>
           <span class="hide-small">Last updated: <%= prep.updated_at.strftime('%D') %> </span>
           <% if prep.conversation && prep.conversation.unread_message_count(current_user) > 0 %>
