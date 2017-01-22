@@ -20,7 +20,8 @@ module ApplicationHelper
   end
 
   def nearest_contest
-    @prep.contests.order(:date).first
+    current_time = Time.now
+    @prep.contests.order(:date).select { |contest| contest.date > current_time }.first
   end
 
   def nearest_contest_time
