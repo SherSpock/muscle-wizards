@@ -29,6 +29,10 @@ class PrepsController < ApplicationController
     redirect_to @prep
   end
 
+  def archived
+    @archived_preps = current_user.preps.archived
+  end
+
   private
 
   def prep_params

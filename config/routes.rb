@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :certifications, only: [:new, :create, :update, :edit, :destroy]
   end
   resources :preps do
+    collection do
+      get :archived
+    end
     resources :contests
     resources :photos
     resources :cardios
