@@ -1,6 +1,10 @@
-<%= time_til_contest %> from
-<% if contest.url.blank? %>
-  <%= contest.title %>  
+<% if prep.active? %>
+  <%= time_til_contest %> from
+  <% if nearest_contest.url.blank? %>
+    <%= nearest_contest.title %>
+  <% else %>
+    <%= link_to nearest_contest.title, nearest_contest.url, target: "_blank" %>
+  <% end %>
 <% else %>
-  <%= link_to contest.title, contest.url, target: "_blank" %>
+  <%= "Archived prep #{prep.title} - Ended #{prep.contests.order(:date).last.date.strftime('%m-%d-%Y')}"%>
 <% end %>
