@@ -13,6 +13,7 @@ class BodyweightsController < ApplicationController
   end
 
   def create
+    multiply_by_ten
     @weight = @prep.bodyweights.new(weight_params)
     if @weight.save
       flash[:success] = "Weigh-in successful"
@@ -26,6 +27,11 @@ class BodyweightsController < ApplicationController
 
   def weight_params
     params.require(:bodyweight).permit(:weight)
+  end
+
+  def multiply_by_ten
+    weight = params[:bodyweight][:weight]
+    params[:bodyweight][:weight] = weight.to_f * 10
   end
 
 end
