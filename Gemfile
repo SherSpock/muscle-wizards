@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'jbuilder', '~> 2.0'
 
-gem 'foundation-rails', '6.3.0.0'
+gem 'foundation-rails', '6.2.4.0'
 gem 'kaminari', "1.0.0"
 gem 'simple_form' 
 gem 'faker'
