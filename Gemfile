@@ -29,6 +29,7 @@ gem 'rolify'
 gem 'devise'
 gem 'magnific-popup-rails'
 gem 'chartkick'
+gem 'jquery-rails', '4.3.1'
 gem 'jquery-ui-rails', '5.0.5'
 
 group :development, :test do
