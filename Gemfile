@@ -1,26 +1,17 @@
 source 'https://rubygems.org'
 
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.1'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
-# Use Puma as the app server
-gem 'puma', '~> 3.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-gem 'jbuilder', '~> 2.0'
-
-gem 'foundation-rails', '6.2.4.0'
-gem 'kaminari', "1.0.0"
-gem 'simple_form' 
-gem 'faker'
-gem 'figaro'
-gem 'paperclip'
+gem 'rails',            '5.1'     # Rails 5.1
+gem 'pg',               '0.21.0'  # Postgresql as the database for Active Record
+gem 'puma',             '3.9.1'   # Puma as the app server
+gem 'sass-rails',       '5.0.6'   # SCSS for stylesheets
+gem 'uglifier',         '3.2.0'   # Uglifier as compressor for JavaScript assets
+gem 'foundation-rails', '6.2.4.0' # Foundation-rails as our kickass front-end framework
+gem 'kaminari',         '1.0.0'   # Kaminari for pagination
+gem 'simple_form',      '3.5.0'   # Simple_form for forms
+gem 'faker',            '1.8.4'   # Faker for fake data
+gem 'figaro',           '1.1.1'   # Figaro for env management
+gem 'paperclip'         
 gem 'aws-sdk-s3'
 gem 'rails_12factor', group: :production
 gem 'simplecov', :require => false, :group => :test
