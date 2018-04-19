@@ -11,7 +11,7 @@ gem 'simple_form',          '3.5.0'   # Forms
 gem 'faker',                '1.8.4'   # Fake data
 gem 'figaro',               '1.1.1'   # ENV variable management
 gem 'paperclip',            '5.2.0'   # File uploads
-gem 'aws-sdk-s3',           '1.0.0'   # Image storage
+gem 'aws-sdk',              '2.9.9'   # Image storage with S3
 gem 'cancancan',            '1.17.0'  # Authorization
 gem 'rolify',               '5.1.0'   # Roles
 gem 'devise',               '4.3.0'   # Authentication
