@@ -1,63 +1,47 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.beta4', '< 5.1'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
-# Use Puma as the app server
-gem 'puma', '~> 3.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-# gem 'turbolinks', '~> 5.x'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-gem 'foundation-rails'
-gem 'kaminari'
-gem 'simple_form'
-gem 'faker'
-gem 'figaro'
-gem 'paperclip'
-gem 'aws-sdk'
-gem 'rails_12factor', group: :production
-gem 'simplecov', :require => false, :group => :test
-gem 'cancancan'
-gem 'rolify'
-gem 'devise'
-gem 'magnific-popup-rails'
-gem 'chartkick'
-gem 'jquery-ui-rails'
-
-group :development, :test do
-  gem 'factory_girl_rails', '~> 4.0'
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'rspec-rails', '~> 3.1'
-  gem "better_errors"
-  gem "binding_of_caller"
-end
+gem 'rails',                '5.1'     # App framework
+gem 'pg',                   '0.21.0'  # Database for Active Record
+gem 'puma',                 '3.9.1'   # App server
+gem 'sass-rails',           '5.0.6'   # Stylesheets
+gem 'uglifier',             '3.2.0'   # Compressor for JavaScript assets
+gem 'foundation-rails',     '6.2.4.0' # Front-end framework
+gem 'kaminari',             '1.0.0'   # Pagination
+gem 'simple_form',          '3.5.0'   # Forms
+gem 'faker',                '1.8.4'   # Fake data
+gem 'figaro',               '1.1.1'   # ENV variable management
+gem 'paperclip',            '5.2.0'   # File uploads
+gem 'aws-sdk',              '2.9.9'   # Image storage with S3
+gem 'cancancan',            '1.17.0'  # Authorization
+gem 'rolify',               '5.1.0'   # Roles
+gem 'devise',               '4.3.0'   # Authentication
+gem 'magnific-popup-rails', '1.1.0'   # Lightbox
+gem 'chartkick',            '2.2.3'   # Highcharts but worse
+gem 'jquery-rails',         '4.3.1'   # May not be needed on account of ujs
+gem 'jquery-ui-rails',      '5.0.5'   # For Datepicker
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
-  gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '3.5.0'           # are we using this?
+  gem 'listen',      '3.0.8'           # what this for
+  gem 'spring',      '2.0.2'           # Application preloading
+  gem 'spring-watcher-listen', '2.0.1' # Spring-watcher is watching you
 end
+
+group :development, :test do
+  gem 'factory_girl_rails', '4.8.0'                     # Data factories for testing
+  gem 'database_cleaner',   '1.6.1'                     # Pristine db for testing
+  gem 'capybara',           '2.13.0'                    # UI testing
+  gem 'rspec-rails',        '3.6.0'                     # Testing framework
+  gem 'better_errors',      '2.2.0'                     # Sweet error pages with console on blow-up
+  gem 'binding_of_caller',  '0.7.3'                     # Trace bindings on up the stack
+  gem 'simplecov',          '0.14.1', :require => false # Test coverage reporting
+end
+
+group :production do
+  gem 'rails_12factor', '0.0.3' # 12factor config
+end  
+
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

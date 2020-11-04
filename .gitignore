@@ -4,19 +4,19 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore bundler config.
+# Ignore bundler config
 /.bundle
 
 # Ignore simplecov directory and reports
 /coverage
 
-# Ignore all logfiles and tempfiles.
+# Ignore all logfiles and tempfiles
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
 
-# Ignore Byebug command history file.
+# Ignore Byebug command history file
 .byebug_history
 
 # Ignore application configuration
@@ -25,3 +25,6 @@
 
 # Ignore all that weird shit factory girl makes
 public/system/
+
+# Ignore node modules
+node_modules/
