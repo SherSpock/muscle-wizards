@@ -58,14 +58,23 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    
     services:
       postgres:
         image: postgres:11
+        
         env:
-          POSTGRES_USER: myapp
-          POSTGRES_DB: myapp_test
+          POSTGRES_USER: muscle_wizards_db_user
+          POSTGRES_DB: muscle_wizards_test
           POSTGRES_PASSWORD: ""
+        
         ports: ["5432:5432"]
+        
+        # Postgres healthcheck
+        options: --health-cmd pg_isready 
+                 --health-interval 10s 
+                 --health-timeout 5s 
+                 --health-retries 5
 
     steps:
       - name: Checkout code
@@ -104,8 +113,8 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: myapp
+          PGHOST: postgres
+          PGUSER: muscle_wizards_db_user
         run: |
           bin/rails db:setup
 
