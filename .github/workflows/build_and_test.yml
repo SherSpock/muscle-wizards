@@ -70,12 +70,12 @@ jobs:
         
         ports: ["5432:5432"]
         
-        # Postgres healthcheck
-        options: >-
-                 --health-cmd pg_isready 
-                 --health-interval 10ms 
-                 --health-timeout 500ms 
-                 --health-retries 15
+        # # Postgres healthcheck
+        # options: >-
+        #          --health-cmd pg_isready 
+        #          --health-interval 10ms 
+        #          --health-timeout 500ms 
+        #          --health-retries 15
 
     steps:
       - name: Checkout code
