@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.3'
+
 gem 'rails',                '5.1'     # App framework
 gem 'pg',                   '0.21.0'  # Database for Active Record
 gem 'puma',                 '3.9.1'   # App server
