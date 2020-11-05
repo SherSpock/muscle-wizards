@@ -112,7 +112,7 @@ jobs:
           yarn install --pure-lockfile
 
       - name: Setup test database
-        run: rails db:setup
+        run: bin/rails db:setup
         working-directory: ./postgres
         env:
           RAILS_ENV: test
@@ -120,4 +120,4 @@ jobs:
           PGUSER: muscle_wizards_db_user
         
       - name: Run tests
-        run: rails test
+        run: bin/rails test
