@@ -109,6 +109,8 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
+      - name: Install libpq-dev
+        run: sudo apt-get -y install libpq-dev  
 
       - name: Setup test database
         env:
