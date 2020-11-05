@@ -112,7 +112,6 @@ jobs:
           yarn install --pure-lockfile
 
       - name: Setup test database
-        working-directory: ./postgres
         env:
           RAILS_ENV: test
           PGHOST: postgres
