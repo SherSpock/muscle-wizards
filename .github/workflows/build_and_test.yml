@@ -118,7 +118,7 @@ jobs:
           PGHOST: postgres
           PGUSER: muscle_wizards_db_user
         run: |
-          ./bin/rails db:setup
+          bin/rails db:setup
 
       - name: Run tests
         run: bin/rails test
