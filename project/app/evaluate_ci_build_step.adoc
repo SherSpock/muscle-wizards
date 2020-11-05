@@ -1,0 +1,30 @@
+= Evaluate CI Build Step
+
+== Description
+
+As things stand there is considerable duplication in the CI Action. It would be beneficial to check if a build job is extractable here.
+
+== Motivation
+
+Kludgy abstractions are just as confusing and cumbersome as unnecessary low-level details. What we need to check here is if an abstraction makes sense. 
+
+== Alternatives
+
+* We could leave the build steps duplicated.
+
+* If a clean build job is not extractable, we could evaluate viability of a different named job for the lint and test steps.
+
+* We could write scripts for the build action(s), thus decoupling that piece of things from GitHub actions and making it available in other contexts. Actually that's probably what should be done here.
+
+== Improvements
+
+Ultimately and if feasible, it would be nice if our GitHub job just pulled from a `docker-compose.test.yml`, so that our dockerized test setup is the same everywhere.
+
+== Acceptance Criteria
+
+* Build step has been extracted into a clearly named and sensibly invocable abstraction
+
+OR
+
+* This ticket has been appended with a "Why we aren't doing this" section detailing the reasons that abstracting the build step is not feasible.
+

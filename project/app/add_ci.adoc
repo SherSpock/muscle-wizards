@@ -1,0 +1,31 @@
+= Add CI
+
+== Description
+
+Currently there's no CI in the project.
+
+Though there are no tests or configured linters at the moment, it would make sense to have the structure for this mapped out.
+
+== Motivation
+
+All other things being equal, more assurances on the nominal behavior of a system are better. CI is an industry standard that provides this -- perhaps especially for dynamic languages -- with minimal effort. 
+
+We are going with GitHub Actions, specifically, so I can learn more about GitHub actions specifically and dockerization in general.
+
+== Alternatives
+
+We could get the same assurances by building testing and linting steps into an appropriately positioned git hook.
+
+We could also build out the CI more quickly and easily by going with an alternative like Travis or CircleCI.
+
+== Improvements
+
+I think it would make sense to have testing and linting on an appropriately positioned git hook, and have that hook be called by the CI. This would catch code deviations earlier in the development lifecycle while maintaining a single source of truth for code goodness.
+
+To avoid a suboptimal developer experience, care would need to be exercised to avoid overzealous code rules or an overly aggressive hook placement in the git lifecycle. But this is actually always true anyway -- an earlier code validation on an otherwise competent and well-communicating team is likely to both save time and make bad rules or process more visible.
+
+== Acceptance Criteria
+
+* A GitHub action runs on every pull request or push to master 
+
+* This action builds Muscle Wizards and runs the test suite
