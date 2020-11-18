@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require jquery_ujs
 //= require jquery-ui/datepicker
 //= require foundation
@@ -64,5 +65,3 @@ function convert_to_local_time() {
     el.html(local_time.toLocaleString());
   });
 }
-
-$(function(){ $(document).foundation(); });
